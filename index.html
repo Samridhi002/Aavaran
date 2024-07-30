@@ -6,6 +6,7 @@
     <title>Aavaran - Sustainable Living Made Easy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -15,6 +16,111 @@
         }
         .eco-item { transition: all 0.3s ease-in-out; }
         .eco-item:hover { transform: scale(1.05); }
+    
+        .hero {
+            position: relative;
+            background-image: url('https://cdn.pixabay.com/photo/2018/04/04/13/38/nature-3289812_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.8) 0%, rgba(34, 211, 238, 0.8) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: move 25s infinite linear;
+        }
+        .animated-bg span:nth-child(1) {
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        .animated-bg span:nth-child(2) {
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 2s;
+            animation-duration: 17s;
+        }
+        .animated-bg span:nth-child(3) {
+            left: 70%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 4s;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
     </style>
 </head>
 <body class="bg-green-50">
@@ -42,22 +148,30 @@
     </header>
 
     <main class="pt-20">
-        <section class="hero min-h-screen flex items-center justify-center gradient-bg">
-            <div class="container mx-auto px-6 py-16 text-center relative">
-                <h2 class="text-6xl font-bold mb-4 text-white">Aavaran</h2>
-                <p class="text-3xl mb-4 text-white">Sustainable Living Made Easy</p>
-                <p class="text-xl mb-8 text-white">Discover eco-friendly products and sustainable alternatives for a greener lifestyle.</p>
-                <button class="bg-white text-green-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300">
+        <section class="hero flex items-center justify-center">
+            <div class="hero-overlay"></div>
+            <div class="animated-bg">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="container mx-auto px-6 py-16 text-center hero-content">
+                <h2 class="text-6xl font-bold mb-4 text-white" data-aos="fade-down" data-aos-delay="200">Aavaran</h2>
+                <p class="text-3xl mb-4 text-white" data-aos="fade-up" data-aos-delay="400">Sustainable Living Made Easy</p>
+                <p class="text-xl mb-8 text-white" data-aos="fade-up" data-aos-delay="600">Discover eco-friendly products and sustainable alternatives for a greener lifestyle.</p>
+                <button class="bg-white text-green-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300" data-aos="zoom-in" data-aos-delay="800">
                     Explore Now
                 </button>
-                <div class="mt-12">
-                    <img src="/api/placeholder/800/400" alt="Sustainable living" class="mx-auto rounded-lg shadow-lg">
-                </div>
+            </div>
+            <div class="scroll-down">
+                <svg class="w-6 h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
             </div>
         </section>
 
         <section class="features container mx-auto px-6 py-16 relative z-10">
-            <h3 class="text-3xl font-bold text-center mb-12 text-green-700">Our Key Features</h3>
+            <h3 class="text-3xl font-bold text-center mb-12 text-green-700" data-aos="fade-up">Our Key Features</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="features-grid">
                 <!-- Features will be dynamically inserted here by JavaScript -->
             </div>
@@ -65,23 +179,23 @@
 
         <section class="eco-challenge bg-green-600 py-16 relative overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h3 class="text-3xl font-bold mb-4 text-white">Take the Eco Challenge</h3>
-                <p class="text-xl mb-8 text-green-100">Compete with friends and track your sustainable habits!</p>
+                <h3 class="text-3xl font-bold mb-4 text-white" data-aos="fade-up">Take the Eco Challenge</h3>
+                <p class="text-xl mb-8 text-green-100" data-aos="fade-up" data-aos-delay="200">Compete with friends and track your sustainable habits!</p>
                 <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <div class="eco-item bg-white p-4 rounded-lg shadow-md">
+                    <div class="eco-item bg-white p-4 rounded-lg shadow-md" data-aos="flip-left" data-aos-delay="400">
                         <h4 class="text-green-600 font-semibold mb-2">Reusable Bags</h4>
                         <p class="text-gray-600">Used 5 times this week</p>
                     </div>
-                    <div class="eco-item bg-white p-4 rounded-lg shadow-md">
+                    <div class="eco-item bg-white p-4 rounded-lg shadow-md" data-aos="flip-left" data-aos-delay="600">
                         <h4 class="text-green-600 font-semibold mb-2">Water Saved</h4>
                         <p class="text-gray-600">15 gallons this month</p>
                     </div>
-                    <div class="eco-item bg-white p-4 rounded-lg shadow-md">
+                    <div class="eco-item bg-white p-4 rounded-lg shadow-md" data-aos="flip-left" data-aos-delay="800">
                         <h4 class="text-green-600 font-semibold mb-2">CO2 Reduced</h4>
                         <p class="text-gray-600">20 lbs this year</p>
                     </div>
                 </div>
-                <button class="bg-white text-green-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300">
+                <button class="bg-white text-green-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300" data-aos="zoom-in" data-aos-delay="1000">
                     Join the Challenge
                 </button>
             </div>
@@ -94,26 +208,26 @@
 
         <section class="product-showcase py-16">
             <div class="container mx-auto px-6">
-                <h3 class="text-3xl font-bold text-center mb-12 text-green-700">Featured Sustainable Products</h3>
+                <h3 class="text-3xl font-bold text-center mb-12 text-green-700" data-aos="fade-up">Featured Sustainable Products</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="/api/placeholder/400/300" alt="Bamboo Toothbrush" class="w-full h-48 object-cover">
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://media.istockphoto.com/id/1913184381/photo/holder-with-bamboo-toothbrushes-in-bathroom-closeup-space-for-text.jpg?s=1024x1024&w=is&k=20&c=J2cm7QlRo0vdu1rXgnp67yz2OUl8rn1j5Ps9-2iVEfU=" alt="Bamboo Toothbrush" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Bamboo Toothbrush</h4>
                             <p class="text-gray-600 mb-4">Eco-friendly alternative to plastic toothbrushes</p>
                             <button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button>
                         </div>
                     </div>
-                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="/api/placeholder/400/300" alt="Reusable Water Bottle" class="w-full h-48 object-cover">
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://media.istockphoto.com/id/1522286388/photo/closeup-womans-hands-hold-insulated-reusable-water-bottle-instead-of-single-use-plastic-cup.jpg?s=1024x1024&w=is&k=20&c=_C_NhvbAegqg1ZMwqvHb_SAeG49K2qTpCSOMIGoh-2c=" alt="Reusable Water Bottle" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Reusable Water Bottle</h4>
                             <p class="text-gray-600 mb-4">Durable and stylish alternative to single-use plastics</p>
                             <button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button>
                         </div>
                     </div>
-                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden">
-                        <img src="/api/placeholder/400/300" alt="Organic Cotton Tote" class="w-full h-48 object-cover">
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                        <img src="https://cdn.pixabay.com/photo/2019/07/26/11/33/bag-4364558_1280.jpg" alt="Organic Cotton Tote" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Organic Cotton Tote</h4>
                             <p class="text-gray-600 mb-4">Versatile and eco-friendly shopping companion</p>
@@ -126,9 +240,9 @@
 
         <section class="cta gradient-bg py-16 relative overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h3 class="text-3xl font-bold mb-4 text-white">Ready to Make a Difference?</h3>
-                <p class="text-xl mb-8 text-green-100">Join our community and start your sustainable journey today.</p>
-                <button class="bg-white text-green-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300">
+                <h3 class="text-3xl font-bold mb-4 text-white" data-aos="fade-up">Ready to Make a Difference?</h3>
+                <p class="text-xl mb-8 text-green-100" data-aos="fade-up" data-aos-delay="200">Join our community and start your sustainable journey today.</p>
+                <button class="bg-white text-green-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-100 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
                     Sign Up Now
                 </button>
             </div>
@@ -178,7 +292,14 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
         // Header scroll effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
@@ -218,9 +339,11 @@
 
         // Populate features grid
         const featuresGrid = document.getElementById('features-grid');
-        features.forEach((feature) => {
+        features.forEach((feature, index) => {
             const featureElement = document.createElement('div');
             featureElement.className = 'feature-card bg-white p-6 rounded-lg shadow-md';
+            featureElement.setAttribute('data-aos', 'fade-up');
+            featureElement.setAttribute('data-aos-delay', (index + 1) * 200);
             featureElement.innerHTML = `
                 <svg class="w-12 h-12 text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${getIconPath(feature.icon)}"></path>
