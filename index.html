@@ -173,7 +173,6 @@
         <section class="features container mx-auto px-6 py-16 relative z-10">
             <h3 class="text-3xl font-bold text-center mb-12 text-green-700" data-aos="fade-up">Our Key Features</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="features-grid">
-                <!-- Features will be dynamically inserted here by JavaScript -->
             </div>
         </section>
 
@@ -215,7 +214,7 @@
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Bamboo Toothbrush</h4>
                             <p class="text-gray-600 mb-4">Eco-friendly alternative to plastic toothbrushes</p>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button>
+                            <a href="toothbrush.html"<button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button></a>
                         </div>
                     </div>
                     <div class="product-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="400">
@@ -223,7 +222,7 @@
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Reusable Water Bottle</h4>
                             <p class="text-gray-600 mb-4">Durable and stylish alternative to single-use plastics</p>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button>
+                            <a href="waterbottle.html"<button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button></a>
                         </div>
                     </div>
                     <div class="product-card bg-white rounded-lg shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="600">
@@ -231,7 +230,7 @@
                         <div class="p-4">
                             <h4 class="text-xl font-semibold mb-2 text-green-600">Organic Cotton Tote</h4>
                             <p class="text-gray-600 mb-4">Versatile and eco-friendly shopping companion</p>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button>
+                            <a href="tote.html"<button class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300">Learn More</button></a>
                         </div>
                     </div>
                 </div>
@@ -294,13 +293,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize AOS
         AOS.init({
             duration: 1000,
             once: true,
         });
 
-        // Header scroll effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
@@ -312,14 +309,12 @@
             }
         });
 
-        // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Newsletter form submission
         const newsletterForm = document.getElementById('newsletter-form');
         newsletterForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -327,7 +322,6 @@
             newsletterForm.reset();
         });
 
-        // Features data
         const features = [
             { icon: 'shopping-bag', title: 'Curated Products', description: 'Handpicked sustainable items for your everyday needs.' },
             { icon: 'search', title: 'Find Alternatives', description: 'Discover eco-friendly substitutes for common products.' },
@@ -337,7 +331,6 @@
             { icon: 'bar-chart-2', title: 'Impact Tracker', description: 'Measure and visualize your positive environmental impact.' }
         ];
 
-        // Populate features grid
         const featuresGrid = document.getElementById('features-grid');
         features.forEach((feature, index) => {
             const featureElement = document.createElement('div');
@@ -354,7 +347,6 @@
             featuresGrid.appendChild(featureElement);
         });
 
-        // Helper function to get icon paths
         function getIconPath(icon) {
             switch (icon) {
                 case 'shopping-bag':
