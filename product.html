@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aavaran - Sustainable Products</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --accent-color: #8bc34a;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+            --card-background: white;
+        }
+
+        .dark-mode {
+            --primary-color: #388E3C;
+            --secondary-color: #2E7D32;
+            --accent-color: #689F38;
+            --text-color: #f4f4f4;
+            --background-color: #333;
+            --card-background: #444;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2213&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #7CB342;
+            transform: translateY(-3px);
+        }
+
+        /* Dynamic Banner */
+        .dynamic-banner {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main content styles */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin-right: 1rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Product Cards */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .add-to-cart, .quick-view {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+            margin-right: 0.5rem;
+        }
+
+        .quick-view {
+            background-color: var(--secondary-color);
+            color: white;
+            margin-left: 0.5rem;
+        }
+
+        .add-to-cart:hover, .quick-view:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .impact-statement {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-proof {
+            font-style: italic;
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .search-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-bar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Aavaran</a>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <button class="dark-mode-toggle" id="darkModeToggle">🌓</button>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sustainable Living Starts Here</h1>
+            <p>Discover eco-friendly products that make a difference for you and the planet</p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <div class="dynamic-banner" id="dynamicBanner">
+        New Arrivals: Check out our latest sustainable products!
+    </div>
+
+    <main class="container">
+        <h2 class="section-title">Our Sustainable Products</h2>
+        
+        <div class="search-filter">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <span class="search-icon" id="searchButton">🔍</span>
+            </div>
+            <div class="filters">
+                <button class="filter-btn" data-category="all">All</button>
+                <button class="filter-btn" data-category="home">Home</button>
+                <button class="filter-btn" data-category="personal">Personal Care</button>
+                <button class="filter-btn" data-category="kitchen">Kitchen</button>
+            </div>
+        </div>
+
+        <div class="products" id="products-container">
+            <!-- Product cards will be dynamically added here -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="impact-statement">Together, we've saved 10,000kg of plastic and reduced 5,000kg of CO2 emissions!</p>
+            <p class="social-proof">Join over 50,000 customers making a difference with Aavaran</p>
+            <p>&copy; 2024 Aavaran. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Bamboo Toothbrush",
+                description: "Eco-friendly alternative to plastic toothbrushes",
+                price: 50,
+                image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+                category: "personal",
+                impact: {
+                    plasticSaved: "5g",
+                    co2Reduced: "10g"
+                }
+            },
+            {
+                id: 2,
+                name: "Reusable Water Bottle",
+                description: "Durable and stylish alternative to single-use plastics",
+                price: 350,
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                category: "personal",
+                impact: {
+                    plasticSaved: "100g",
+                    co2Reduced: "50g"
+                }
+            },
+            {
+                id: 3,
+                name: "Organic Cotton Tote",
+                description: "Versatile and eco-friendly shopping companion",
+                price: 100,
+                image: "https://images.unsplash.com/photo-1597831160840-af54a14e0cad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                category: "home",
+                impact: {
+                    plasticSaved: "50g",
+                    co2Reduced: "30g"
+                }
+            },
+            {
+                id: 4,
+                name: "Beeswax Food Wraps",
+                description: "Reusable alternative to plastic wrap",
+                price: 150,
+                image: "https://images.unsplash.com/photo-1621844504215-17c1bd633c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80",
+                category: "kitchen",
+                impact: {
+                    plasticSaved: "30g",
+                    co2Reduced: "20g"
+                }
+            },
+            {
+                id: 5,
+                name: "Stainless Steel Straws",
+                description: "Durable and washable alternative to plastic straws",
+                price: 50,
+                image: "https://images.unsplash.com/photo-1572534493769-84d02bc17e14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+                category: "kitchen",
+                impact: {
+                    plasticSaved: "20g",
+                    co2Reduced: "15g"
+                }
+            },
+            {
+                id: 6,
+                name: "Biodegradable Phone Case",
+                description: "Protect your phone and the environment",
+                price: 100,
+                image: "https://images.unsplash.com/photo-1603313011101-320f26a4f6f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+                category: "personal",
+                impact: {
+                    plasticSaved: "40g",
+                    co2Reduced: "25g"
+                }
+            }
+        ];
+
+        const productsContainer = document.getElementById('products-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const modal = document.getElementById('quickViewModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.querySelector('.close-modal');
+        const dynamicBanner = document.getElementById('dynamicBanner');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <p class="product-price">₹${product.price.toFixed(2)}</p>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="quick-view" data-id="${product.id}">Quick View</button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function displayProducts(category = 'all', searchTerm = '') {
+            productsContainer.innerHTML = '';
+            const filteredProducts = products.filter(product => 
+                (category === 'all' || product.category === category) &&
+                (product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                 product.description.toLowerCase().includes(searchTerm.toLowerCase()))
+            );
+            filteredProducts.forEach(product => {
+                const card = createProductCard(product);
+                productsContainer.appendChild(card);
+            });
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                displayProducts(category, searchInput.value);
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        function performSearch() {
+            const activeCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
+            displayProducts(activeCategory, searchInput.value);
+        }
+
+        searchInput.addEventListener('input', performSearch);
+        searchButton.addEventListener('click', performSearch);
+
+        // Dark mode toggle
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Quick view modal
+        productsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-view')) {
+                const productId = parseInt(e.target.getAttribute('data-id'));
+                const product = products.find(p => p.id === productId);
+                modalContent.innerHTML = `
+                    <h2>${product.name}</h2>
+                    <img src="${product.image}" alt="${product.name}" style="max-width: 100%;">
+                    <p>${product.description}</p>
+                    <p>Price: ₹${product.price.toFixed(2)}</p>
+                    <div class="impact-metrics">
+                        <div class="impact-metric">
+                            <div class="impact-metric-value">${product.impact.plasticSaved}</div>
+                            <div>Plastic Saved</div>
+                        </div>
+                        <div class="impact-metric">
+                            <div class="impact-metric-value">${product.impact.co2Reduced}</div>
+                            <div>CO2 Reduced</div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                `;
+                modal.style.display = 'block';
+            }
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Dynamic banner
+        const bannerMessages = [
+            "New Arrivals: Check out our latest sustainable products!",
+            "Limited Time Offer: 20% off all reusable water bottles!",
+            "Join our Rewards Program and earn points on every purchase!"
+        ];
+
+        let currentBannerIndex = 0;
+        setInterval(() => {
+            currentBannerIndex = (currentBannerIndex + 1) % bannerMessages.length;
+            dynamicBanner.textContent = bannerMessages[currentBannerIndex];
+        }, 5000);
+
+        // Add to cart functionality (placeholder)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                alert('Product added to cart!');
+            }
+        });
+
+        // Initialize the page
+        displayProducts();
+    </script>
+</body>
+</html>
