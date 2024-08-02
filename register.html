@@ -28,6 +28,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .navbar-brand {
@@ -54,6 +55,7 @@
             flex-direction: column;
             cursor: pointer;
             margin-right: 20px;
+            z-index: 1000;
         }
 
         .hamburger span {
@@ -220,10 +222,11 @@
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
-                top: 60px;
+                top: 100%;
                 left: 0;
-                background-color: rgba(255, 255, 255, 0.9);
+                background-color: rgba(46, 204, 113, 0.9);
                 padding: 20px 0;
+                z-index: 999;
             }
 
             .navbar-links.active {
@@ -231,7 +234,7 @@
             }
 
             .navbar-links a {
-                color: #333;
+                color: white;
                 margin: 10px 0;
                 text-align: center;
             }

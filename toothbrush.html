@@ -56,8 +56,13 @@
             transform: scale(1.05);
         }
 
+        .nav-links {
+            display: flex;
+        }
+
         .nav-links ul {
             display: flex;
+            list-style: none;
         }
 
         .nav-links a {
@@ -70,6 +75,12 @@
 
         .nav-links a:hover {
             color: #2ecc71;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
         }
 
         .hero {
@@ -144,6 +155,7 @@
             justify-content: center;
             margin-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .tab-button {
@@ -307,10 +319,12 @@
             justify-content: space-between;
             margin-top: 30px;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .comparison-product {
             flex: 1;
+            min-width: 250px;
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
@@ -381,9 +395,73 @@
             margin-bottom: 20px;
         }
 
+        /* Responsive styles */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-button {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .comparison-tool {
+                flex-direction: column;
+            }
+
+            .comparison-product {
+                width: 100%;
+            }
+
             .recommendations .product-card {
                 flex: 0 1 calc(50% - 20px);
+            }
+
+            .eco-points {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
             }
         }
 
@@ -398,8 +476,11 @@
     <header>
         <nav class="container">
             <div class="logo">Aavaran</div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
             <div class="nav-links">
-                <ul type="none">
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="product.html">Products</a></li>
                     <li><a href="alternatives.html">Alternatives</a></li>
@@ -469,11 +550,11 @@
                 </ul>
             </div>
         </section>
-
+    
         <section class="educational-content container">
             <h2 class="section-title">Learn More About Sustainable Oral Care</h2>
             <div class="video-container">
-                <iframe src="https://youtu.be/GvMlXxO9XtE?si=jvVkc44cW4k4T6nb" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/GvMlXxO9XtE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="quiz-container">
                 <h3>Test Your Knowledge</h3>
@@ -482,7 +563,7 @@
                 </div>
             </div>
         </section>
-
+    
         <section class="user-interaction container">
             <h2 class="section-title">Compare Products</h2>
             <div class="comparison-tool">
@@ -504,216 +585,230 @@
                 </div>
             </div>
         </section>
-
+    
         <section class="recommendations container">
             <h2 class="section-title">You May Also Like</h2>
             <div class="product-carousel">
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Reusable Water Bottle">
+                    <img src="/api/placeholder/150/150" alt="Reusable Water Bottle">
                     <h3>Reusable Water Bottle</h3>
                     <p>$19.99</p>
                     <a href="#" class="cta-button">Learn More</a>
                 </div>
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Organic Cotton Tote">
+                    <img src="/api/placeholder/150/150" alt="Organic Cotton Tote">
                     <h3>Organic Cotton Tote</h3>
                     <p>$14.99</p>
                     <a href="#" class="cta-button">Learn More</a>
                 </div>
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/150" alt="Bamboo Cutlery Set">
+                    <img src="/api/placeholder/150/150" alt="Bamboo Cutlery Set">
                     <h3>Bamboo Cutlery Set</h3>
                     <p>$9.99</p>
                     <a href="#" class="cta-button">Learn More</a>
                 </div>
             </div>
         </section>
-    </main>
-
-    <div class="eco-points">
-        <i class="fas fa-leaf"></i> Eco Points: <span id="eco-points-value">0</span>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>Together, our customers have saved over 1,000,000 plastic toothbrushes from landfills!</p>
-            <p>&copy; 2024 Aavaran. All rights reserved.</p>
+    
+        <div class="eco-points">
+            <i class="fas fa-leaf"></i> Eco Points: <span id="eco-points-value">0</span>
         </div>
-    </footer>
-
-    <script>
-        // Tab functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
-                
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                button.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // Dynamic loading of reviews
-        const reviewsContainer = document.getElementById('reviews-container');
-        const reviews = [
-            { name: 'John D.', rating: 5, comment: 'Great product! Feels good to use and helps the environment.' },
-            { name: 'Sarah M.', rating: 4, comment: 'Nice toothbrush, but took some getting used to.' },
-            { name: 'Mike R.', rating: 5, comment: 'Excellent quality and eco-friendly. Will buy again!' }
-        ];
-
-        function loadReviews() {
-            reviewsContainer.innerHTML = '';
-            reviews.forEach(review => {
-                const reviewElement = document.createElement('div');
-                reviewElement.classList.add('review');
-                reviewElement.innerHTML = `
-                    <h3>${review.name} - ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</h3>
-                    <p>${review.comment}</p>
-                `;
-                reviewsContainer.appendChild(reviewElement);
-            });
-        }
-
-        loadReviews();
-
-        // Handling the question form submission
-        const questionForm = document.getElementById('question-form');
-        const qaContainer = document.getElementById('qa-container');
-
-        questionForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const question = e.target.querySelector('textarea').value;
-            if (question.trim() !== '') {
-                const questionElement = document.createElement('div');
-                questionElement.classList.add('qa-item');
-                questionElement.innerHTML = `
-                    <h3>Q: ${question}</h3>
-                    <p>A: Thank you for your question. Our team will respond shortly.</p>
-                `;
-                qaContainer.appendChild(questionElement);
-                e.target.reset();
-                incrementEcoPoints(5);
-            }
-        });
-
-        // Gamification elements
-        let ecoPoints = 0;
-        const ecoPointsValue = document.getElementById('eco-points-value');
-
-        function incrementEcoPoints(points) {
-            ecoPoints += points;
-            ecoPointsValue.textContent = ecoPoints;
-            ecoPointsValue.style.animation = 'none';
-            ecoPointsValue.offsetHeight; // Trigger reflow
-            ecoPointsValue.style.animation = 'fadeInUp 0.5s ease';
-        }
-
-        // Add eco points for various actions
-        document.querySelector('.cta-button').addEventListener('click', () => incrementEcoPoints(10));
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', () => incrementEcoPoints(1));
-        });
-
-        // Creating quizzes or surveys
-        const quizContainer = document.getElementById('quiz');
-        const quizQuestions = [
-            {
-                question: 'How long does it take for a plastic toothbrush to decompose?',
-                options: ['1 year', '10 years', '100 years', '400+ years'],
-                correctAnswer: 3
-            },
-            {
-                question: 'What is the main material of our toothbrush handle?',
-                options: ['Plastic', 'Bamboo', 'Metal', 'Glass'],
-                correctAnswer: 1
-            }
-        ];
-
-        function loadQuiz() {
-            quizContainer.innerHTML = '';
-            quizQuestions.forEach((q, index) => {
-                const questionElement = document.createElement('div');
-                questionElement.classList.add('quiz-question');
-                questionElement.innerHTML = `
-                    <p class="quiz-question">${index + 1}. ${q.question}</p>
-                    <div class="quiz-options">
-                        ${q.options.map((option, i) => `
-                            <div class="quiz-option" data-index="${i}">${option}</div>
-                        `).join('')}
-                    </div>
-                `;
-                quizContainer.appendChild(questionElement);
-            });
-
-            // Add event listeners to quiz options
-            document.querySelectorAll('.quiz-option').forEach(option => {
-                option.addEventListener('click', (e) => {
-                    const selectedOption = e.target;
-                    const questionIndex = Array.from(quizContainer.children).indexOf(selectedOption.closest('.quiz-question'));
-                    const optionIndex = parseInt(selectedOption.getAttribute('data-index'));
-
-                    // Remove previous selections
-                    selectedOption.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-
-                    // Select the clicked option
-                    selectedOption.classList.add('selected');
-
-                    // Check if the answer is correct
-                    if (optionIndex === quizQuestions[questionIndex].correctAnswer) {
-                        incrementEcoPoints(5);
-                        selectedOption.style.backgroundColor = '#2ecc71';
-                    } else {
-                        selectedOption.style.backgroundColor = '#e74c3c';
-                    }
+    
+        <footer>
+            <div class="container">
+                <p>Together, our customers have saved over 1,000,000 plastic toothbrushes from landfills!</p>
+                <p>&copy; 2024 Aavaran. All rights reserved.</p>
+            </div>
+        </footer>
+    
+        <script>
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+    
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+    
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
-        }
-
-        loadQuiz();
-
-        // Sticky header
-        const header = document.querySelector('header');
-        let lastScrollTop = 0;
-
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
+    
+            // Dynamic loading of reviews
+            const reviewsContainer = document.getElementById('reviews-container');
+            const reviews = [
+                { name: 'John D.', rating: 5, comment: 'Great product! Feels good to use and helps the environment.' },
+                { name: 'Sarah M.', rating: 4, comment: 'Nice toothbrush, but took some getting used to.' },
+                { name: 'Mike R.', rating: 5, comment: 'Excellent quality and eco-friendly. Will buy again!' }
+            ];
+    
+            function loadReviews() {
+                reviewsContainer.innerHTML = '';
+                reviews.forEach(review => {
+                    const reviewElement = document.createElement('div');
+                    reviewElement.classList.add('review');
+                    reviewElement.innerHTML = `
+                        <h3>${review.name} - ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</h3>
+                        <p>${review.comment}</p>
+                    `;
+                    reviewsContainer.appendChild(reviewElement);
+                });
             }
-            lastScrollTop = scrollTop;
-        });
-
-        // Animate elements on scroll
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.product-card, .review, .comparison-product');
-            elements.forEach(el => {
-                if (isElementInViewport(el)) {
-                    el.style.animation = 'fadeInUp 0.5s ease forwards';
+    
+            loadReviews();
+    
+            // Handling the question form submission
+            const questionForm = document.getElementById('question-form');
+            const qaContainer = document.getElementById('qa-container');
+    
+            questionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const question = e.target.querySelector('textarea').value;
+                if (question.trim() !== '') {
+                    const questionElement = document.createElement('div');
+                    questionElement.classList.add('qa-item');
+                    questionElement.innerHTML = `
+                        <h3>Q: ${question}</h3>
+                        <p>A: Thank you for your question. Our team will respond shortly.</p>
+                    `;
+                    qaContainer.appendChild(questionElement);
+                    e.target.reset();
+                    incrementEcoPoints(5);
                 }
             });
-        }
-
-        window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Run once on load
-    </script>
-</body>
-</html>
+    
+            // Gamification elements
+            let ecoPoints = 0;
+            const ecoPointsValue = document.getElementById('eco-points-value');
+    
+            function incrementEcoPoints(points) {
+                ecoPoints += points;
+                ecoPointsValue.textContent = ecoPoints;
+                ecoPointsValue.style.animation = 'none';
+                ecoPointsValue.offsetHeight; // Trigger reflow
+                ecoPointsValue.style.animation = 'fadeInUp 0.5s ease';
+            }
+    
+            // Add eco points for various actions
+            document.querySelector('.cta-button').addEventListener('click', () => incrementEcoPoints(10));
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => incrementEcoPoints(1));
+            });
+    
+            // Creating quizzes or surveys
+            const quizContainer = document.getElementById('quiz');
+            const quizQuestions = [
+                {
+                    question: 'How long does it take for a plastic toothbrush to decompose?',
+                    options: ['1 year', '10 years', '100 years', '400+ years'],
+                    correctAnswer: 3
+                },
+                {
+                    question: 'What is the main material of our toothbrush handle?',
+                    options: ['Plastic', 'Bamboo', 'Metal', 'Glass'],
+                    correctAnswer: 1
+                }
+            ];
+    
+            function loadQuiz() {
+                quizContainer.innerHTML = '';
+                quizQuestions.forEach((q, index) => {
+                    const questionElement = document.createElement('div');
+                    questionElement.classList.add('quiz-question');
+                    questionElement.innerHTML = `
+                        <p class="quiz-question">${index + 1}. ${q.question}</p>
+                        <div class="quiz-options">
+                            ${q.options.map((option, i) => `
+                                <div class="quiz-option" data-index="${i}">${option}</div>
+                            `).join('')}
+                        </div>
+                    `;
+                    quizContainer.appendChild(questionElement);
+                });
+    
+                // Add event listeners to quiz options
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const selectedOption = e.target;
+                        const questionIndex = Array.from(quizContainer.children).indexOf(selectedOption.closest('.quiz-question'));
+                        const optionIndex = parseInt(selectedOption.getAttribute('data-index'));
+    
+                        // Remove previous selections
+                        selectedOption.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+    
+                        // Select the clicked option
+                        selectedOption.classList.add('selected');
+    
+                        // Check if the answer is correct
+                        if (optionIndex === quizQuestions[questionIndex].correctAnswer) {
+                            incrementEcoPoints(5);
+                            selectedOption.style.backgroundColor = '#2ecc71';
+                        } else {
+                            selectedOption.style.backgroundColor = '#e74c3c';
+                        }
+                    });
+                });
+            }
+    
+            loadQuiz();
+    
+            // Sticky header
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+    
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop;
+            });
+    
+            // Animate elements on scroll
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+    
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.product-card, .review, .comparison-product');
+                elements.forEach(el => {
+                    if (isElementInViewport(el)) {
+                        el.style.animation = 'fadeInUp 0.5s ease forwards';
+                    }
+                });
+            }
+    
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+    
+            // Hamburger menu functionality
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+    
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+    
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        </script>
+    </body>
+    </html>
