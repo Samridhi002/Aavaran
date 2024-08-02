@@ -92,7 +92,7 @@
         <section class="mb-16">
             <h2 class="text-3xl font-bold mb-8 text-center gradient-text" data-aos="fade-up">Meet Our Team</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="teamMembers">
-                <!-- Team members will be dynamically inserted here -->
+
             </div>
         </section>
 
@@ -173,7 +173,7 @@
             const feedbackForm = document.getElementById('feedbackForm');
             let currentRating = 0;
 
-            // Render team members
+          
             teamMembers.forEach((member, index) => {
                 const memberElement = document.createElement('div');
                 memberElement.className = 'team-member relative overflow-hidden rounded-lg shadow-lg';
@@ -191,7 +191,7 @@
                 teamMembersContainer.appendChild(memberElement);
             });
 
-            // Render rating stars
+            
             for (let i = 1; i <= 5; i++) {
                 const star = document.createElement('span');
                 star.innerHTML = feather.icons['star'].toSvg();
@@ -200,7 +200,7 @@
                 ratingStarsContainer.appendChild(star);
             }
 
-            // Handle star rating
+ 
             ratingStarsContainer.addEventListener('click', function(e) {
                 if (e.target.tagName === 'svg') {
                     currentRating = parseInt(e.target.dataset.rating);
@@ -220,7 +220,7 @@
                 });
             }
 
-            // Handle form submission
+     
             feedbackForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(feedbackForm);
@@ -231,14 +231,14 @@
                     rating: currentRating
                 };
                 console.log('Feedback submitted:', feedback);
-                // Here you would typically send the feedback data to a server
+         
                 alert('Thank you for your feedback!');
                 feedbackForm.reset();
                 currentRating = 0;
                 updateStars();
             });
 
-            // Initialize Feather icons
+            
             feather.replace();
         });
     </script>
