@@ -49,6 +49,21 @@
             font-weight: 400;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 2px 0;
+            transition: 0.4s;
+        }
+
         .container {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
@@ -199,6 +214,33 @@
             transform: translateY(0);
         }
 
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 20px 0;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .navbar-links a {
+                color: #333;
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
         @media (max-width: 480px) {
             .container {
                 width: 90%;
@@ -216,6 +258,11 @@
             <a href="blog.html">Blog</a>
             <a href="community.html">Community</a>
             <a href="register.html">My Account</a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
@@ -280,6 +327,8 @@
         const signinForm = document.getElementById('signin-form');
         const registerForm = document.getElementById('register-form');
         const notification = document.getElementById('notification');
+        const hamburger = document.querySelector('.hamburger');
+        const navbarLinks = document.querySelector('.navbar-links');
 
         signinTab.addEventListener('click', () => {
             signinTab.classList.add('active');
@@ -325,6 +374,11 @@
                 showNotification(`${platform.charAt(0).toUpperCase() + platform.slice(1)} sign-in successful!`);
                 // Add social sign-in logic here
             });
+        });
+
+        // Hamburger menu functionality
+        hamburger.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
         });
     </script>
 </body>
