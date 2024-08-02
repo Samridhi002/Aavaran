@@ -56,8 +56,14 @@
             transform: scale(1.05);
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links ul {
             display: flex;
+            list-style: none;
         }
 
         .nav-links a {
@@ -70,6 +76,52 @@
 
         .nav-links a:hover {
             color: #2ecc71;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: #ffffff;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px;
+                width: 100%;
+            }
+
+            .hamburger {
+                display: block;
+            }
         }
 
         .hero {
@@ -144,6 +196,7 @@
             justify-content: center;
             margin-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .tab-button {
@@ -154,6 +207,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
             color: #666;
+            margin: 5px;
         }
 
         .tab-button.active {
@@ -305,14 +359,16 @@
             justify-content: space-between;
             margin-top: 30px;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .comparison-product {
-            flex: 1;
+            flex: 1 1 300px;
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
 
         .question-form {
@@ -380,11 +436,39 @@
             .recommendations .product-card {
                 flex: 0 1 calc(50% - 20px);
             }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .comparison-product {
+                flex: 1 1 100%;
+            }
         }
 
         @media (max-width: 480px) {
             .recommendations .product-card {
                 flex: 0 1 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            .eco-points {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -394,7 +478,7 @@
         <nav class="container">
             <div class="logo">Aavaran</div>
             <div class="nav-links">
-                <ul type="none">
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="product.html">Products</a></li>
                     <li><a href="alternatives.html">Alternatives</a></li>
@@ -402,6 +486,9 @@
                     <li><a href="community.html">Community</a></li>
                     <li><a href="register.html">My Account</a></li>
                 </ul>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
@@ -411,8 +498,8 @@
             <div class="hero-content container">
                 <h1>Cotton Tote Bag</h1>
                 <p>Eco-friendly alternative to plastic shopping bags</p>
-                <p>₹14.99</p>
-                <a href="#" class="cta-button">Add to Cart</a>
+                <p>₹100</p>
+                <a href="product.html" class="cta-button">Add to Cart</a>
             </div>
         </section>
 
@@ -471,7 +558,7 @@
         <section class="educational-content container">
             <h2 class="section-title">Learn More About Sustainable Shopping</h2>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=UaB_BQ9WLBE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/UaB_BQ9WLBE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="quiz-container">
                 <h3>Test Your Knowledge</h3>
@@ -488,7 +575,7 @@
                     <h3>Cotton Tote Bag</h3>
                     <ul>
                         <li>Material: 100% organic cotton</li>
-                        <li>Price: $14.99</li>
+                        <li>Price: ₹100</li>
                         <li>Capacity: 30L</li>
                         <li>Durability: High</li>
                     </ul>
@@ -497,7 +584,7 @@
                     <h3>Paper Bag</h3>
                     <ul>
                         <li>Material: Recycled paper</li>
-                        <li>Price: $0.10</li>
+                        <li>Price: ₹30</li>
                         <li>Capacity: 10L</li>
                         <li>Durability: Low</li>
                     </ul>
@@ -506,7 +593,7 @@
                     <h3>Plastic Bag</h3>
                     <ul>
                         <li>Material: Polyethylene</li>
-                        <li>Price: $0.05</li>
+                        <li>Price: ₹20</li>
                         <li>Capacity: 15L</li>
                         <li>Durability: Medium</li>
                     </ul>
@@ -514,39 +601,12 @@
             </div>
         </section>
 
-        <section class="recommendations container">
-            <h2 class="section-title">You May Also Like</h2>
-            <div class="product-carousel">
-                <div class="product-card">
-                    <img src="/api/placeholder/200/200" alt="Reusable Water Bottle">
-                    <h3>Reusable Water Bottle</h3>
-                    <p>$24.99</p>
-                    <a href="#" class="cta-button">View Product</a>
-                </div>
-                <div class="product-card">
-                    <img src="/api/placeholder/200/200" alt="Bamboo Utensil Set">
-                    <h3>Bamboo Utensil Set</h3>
-                    <p>$19.99</p>
-                    <a href="#" class="cta-button">View Product</a>
-                </div>
-                <div class="product-card">
-                    <img src="/api/placeholder/200/200" alt="Beeswax Food Wraps">
-                    <h3>Beeswax Food Wraps</h3>
-                    <p>$15.99</p>
-                    <a href="#" class="cta-button">View Product</a>
-                </div>
-            </div>
-        </section>
+        
     </main>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 Aavaran. All rights reserved.</p>
-            <!--<div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>-->
         </div>
     </footer>
 
@@ -557,114 +617,126 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-    // Tab functionality
-    $('.tab-button').click(function() {
-        $('.tab-button').removeClass('active');
-        $('.tab-content').removeClass('active');
-        $(this).addClass('active');
-        $('#' + $(this).data('tab')).addClass('active');
-    });
+            // Tab functionality
+            $('.tab-button').click(function() {
+                $('.tab-button').removeClass('active');
+                $('.tab-content').removeClass('active');
+                $(this).addClass('active');
+                $('#' + $(this).data('tab')).addClass('active');
+            });
 
-    // Eco points functionality
-    let ecoPoints = 0;
-    function incrementEcoPoints(points) {
-        ecoPoints += points;
-        $('#eco-points-value').text(ecoPoints);
-    }
-
-    $('.cta-button').click(function(e) {
-        e.preventDefault();
-        incrementEcoPoints(10);
-    });
-
-    // Load reviews
-    const reviewsContainer = $('#reviews-container');
-    const reviews = [
-        { name: 'John D.', rating: 5, comment: 'Great product! Feels good to use and helps the environment.' },
-        { name: 'Sarah M.', rating: 4, comment: 'Nice tote bag, but took some getting used to.' },
-        { name: 'Mike R.', rating: 5, comment: 'Excellent quality and eco-friendly. Will buy again!' }
-    ];
-
-    function loadReviews() {
-        reviewsContainer.empty();
-        reviews.forEach(review => {
-            const reviewElement = $('<div>').addClass('review');
-            reviewElement.html(`
-                <h3>${review.name} - ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</h3>
-                <p>${review.comment}</p>
-            `);
-            reviewsContainer.append(reviewElement);
-        });
-    }
-
-    loadReviews();
-
-    // Quiz functionality
-    const quizContainer = $('#quiz');
-    const quizQuestions = [
-        {
-            question: "What is the average lifespan of a well-maintained cotton tote bag?",
-        options: [
-            "6 months to 1 year",
-            "1 to 2 years",
-            "2 to 5 years",
-            "5+ years"
-        ],
-        correctAnswer: 3
-        },
-        {
-            question: "What is an advantage of cotton tote bags over paper bags?",
-        options: [
-            "Cotton bags are cheaper",
-            "Cotton bags are more durable",
-            "Cotton bags are always larger",
-            "All of the above"
-        ],
-        correctAnswer: 3
-        }
-    ];
-
-    function loadQuiz() {
-        quizContainer.empty();
-        quizQuestions.forEach((q, index) => {
-            const questionElement = $('<div>').addClass('quiz-question');
-            questionElement.html(`
-                <p class="quiz-question">${index + 1}. ${q.question}</p>
-                <div class="quiz-options">
-                    ${q.options.map((option, i) => `
-                        <div class="quiz-option" data-index="${i}">${option}</div>
-                    `).join('')}
-                </div>
-            `);
-            quizContainer.append(questionElement);
-        });
-
-        // Quiz interaction
-        $('.quiz-option').click(function() {
-            const $this = $(this);
-            $this.siblings().removeClass('selected');
-            $this.addClass('selected');
-            const questionIndex = $this.closest('.quiz-question').index();
-            const optionIndex = parseInt($this.data('index'));
-
-            if (optionIndex === quizQuestions[questionIndex].correctAnswer) {
-                incrementEcoPoints(5);
-                $this.css('background-color', '#2ecc71');
-            } else {
-                $this.css('background-color', '#e74c3c');
+            // Eco points functionality
+            let ecoPoints = 0;
+            function incrementEcoPoints(points) {
+                ecoPoints += points;
+                $('#eco-points-value').text(ecoPoints);
             }
+
+            $('.cta-button').click(function(e) {
+                e.preventDefault();
+                incrementEcoPoints(10);
+            });
+
+            // Load reviews
+            const reviewsContainer = $('#reviews-container');
+            const reviews = [
+                { name: 'John D.', rating: 5, comment: 'Great product! Feels good to use and helps the environment.' },
+                { name: 'Sarah M.', rating: 4, comment: 'Nice tote bag, but took some getting used to.' },
+                { name: 'Mike R.', rating: 5, comment: 'Excellent quality and eco-friendly. Will buy again!' }
+            ];
+
+            function loadReviews() {
+                reviewsContainer.empty();
+                reviews.forEach(review => {
+                    const reviewElement = $('<div>').addClass('review');
+                    reviewElement.html(`
+                        <h3>${review.name} - ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</h3>
+                        <p>${review.comment}</p>
+                    `);
+                    reviewsContainer.append(reviewElement);
+                });
+            }
+
+            loadReviews();
+
+            // Quiz functionality
+            const quizContainer = $('#quiz');
+            const quizQuestions = [
+                {
+                    question: "What is the average lifespan of a well-maintained cotton tote bag?",
+                    options: [
+                        "6 months to 1 year",
+                        "1 to 2 years",
+                        "2 to 5 years",
+                        "5+ years"
+                    ],
+                    correctAnswer: 3
+                },
+                {
+                    question: "What is an advantage of cotton tote bags over paper bags?",
+                    options: [
+                        "Cotton bags are cheaper",
+                        "Cotton bags are more durable",
+                        "Cotton bags are always larger",
+                        "All of the above"
+                    ],
+                    correctAnswer: 1
+                }
+            ];
+
+            function loadQuiz() {
+                quizContainer.empty();
+                quizQuestions.forEach((q, index) => {
+                    const questionElement = $('<div>').addClass('quiz-question');
+                    questionElement.html(`
+                        <p class="quiz-question">${index + 1}. ${q.question}</p>
+                        <div class="quiz-options">
+                            ${q.options.map((option, i) => `
+                                <div class="quiz-option" data-index="${i}">${option}</div>
+                            `).join('')}
+                        </div>
+                    `);
+                    quizContainer.append(questionElement);
+                });
+
+                // Quiz interaction
+                $('.quiz-option').click(function() {
+                    const $this = $(this);
+                    $this.siblings().removeClass('selected');
+                    $this.addClass('selected');
+                    const questionIndex = $this.closest('.quiz-question').index();
+                    const optionIndex = parseInt($this.data('index'));
+
+                    if (optionIndex === quizQuestions[questionIndex].correctAnswer) {
+                        incrementEcoPoints(5);
+                        $this.css('background-color', '#2ecc71');
+                    } else {
+                        $this.css('background-color', '#e74c3c');
+                    }
+                });
+            }
+
+            loadQuiz();
+
+            // Question form submission
+            $('#question-form').submit(function(e) {
+                e.preventDefault();
+                alert('Thank you for your question! We will respond shortly.');
+                $(this).find('textarea').val('');
+            });
+
+            // Hamburger menu functionality
+            $('.hamburger').click(function() {
+                $('.nav-links').toggleClass('active');
+            });
+
+            // Close menu when clicking outside
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.nav-links, .hamburger').length) {
+                    $('.nav-links').removeClass('active');
+                }
+            });
         });
-    }
-
-    loadQuiz();
-
-    // Question form submission
-    $('#question-form').submit(function(e) {
-        e.preventDefault();
-        alert('Thank you for your question! We will respond shortly.');
-        $(this).find('textarea').val('');
-    });
-});
     </script>
 </body>
 </html>

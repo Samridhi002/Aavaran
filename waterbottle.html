@@ -55,9 +55,17 @@
         .logo:hover {
             transform: scale(1.05);
         }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links ul {
             display: flex;
+            list-style: none;
         }
+
         .nav-links a {
             margin-left: 20px;
             text-decoration: none;
@@ -68,6 +76,52 @@
 
         .nav-links a:hover {
             color: #2ecc71;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: #ffffff;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px;
+                width: 100%;
+            }
+
+            .hamburger {
+                display: block;
+            }
         }
 
         .hero {
@@ -142,6 +196,7 @@
             justify-content: center;
             margin-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .tab-button {
@@ -152,6 +207,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
             color: #666;
+            margin-bottom: 10px;
         }
 
         .tab-button.active {
@@ -303,14 +359,17 @@
             justify-content: space-between;
             margin-top: 30px;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .comparison-product {
             flex: 1;
+            min-width: 250px;
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
 
         .question-form {
@@ -378,11 +437,34 @@
             .recommendations .product-card {
                 flex: 0 1 calc(50% - 20px);
             }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .eco-points {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 480px) {
             .recommendations .product-card {
                 flex: 0 1 100%;
+            }
+
+            .comparison-product {
+                flex: 1 0 100%;
+            }
+
+            .tab-button {
+                font-size: 0.9rem;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -392,7 +474,7 @@
         <nav class="container">
             <div class="logo">Aavaran</div>
             <div class="nav-links">
-                <ul type="none">
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="product.html">Products</a></li>
                     <li><a href="alternatives.html">Alternatives</a></li>
@@ -400,6 +482,9 @@
                     <li><a href="community.html">Community</a></li>
                     <li><a href="register.html">My Account</a></li>
                 </ul>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
@@ -409,8 +494,8 @@
             <div class="hero-content container">
                 <h1>Reusable Water Bottle</h1>
                 <p>Eco-friendly alternative to single-use plastic bottles</p>
-                <p>₹19.99</p>
-                <a href="#" class="cta-button">Add to Cart</a>
+                <p>₹250</p>
+                <a href="product.html" class="cta-button">Add to Cart</a>
             </div>
         </section>
 
@@ -470,7 +555,7 @@
         <section class="educational-content container">
             <h2 class="section-title">Learn More About Sustainable Hydration</h2>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=cKJChcoAjno" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/cKJChcoAjno" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="quiz-container">
                 <h3>Test Your Knowledge</h3>
@@ -488,7 +573,7 @@
                     <ul>
                         <li>Eco-friendly</li>
                         <li>Keeps drinks cold for 24 hours</li>
-                        <li>$19.99</li>
+                        <li>₹250</li>
                     </ul>
                 </div>
                 <div class="comparison-product">
@@ -496,44 +581,20 @@
                     <ul>
                         <li>Single-use plastic</li>
                         <li>No temperature retention</li>
-                        <li>$1.00 per bottle</li>
+                        <li>₹50 per bottle</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="recommendations container">
-            <h2 class="section-title">You May Also Like</h2>
-            <div class="product-carousel">
-                <div class="product-card">
-                    <img src="/api/placeholder/150/150" alt="Bamboo Straw Set">
-                    <h3>Bamboo Straw Set</h3>
-                    <p>$9.99</p>
-                    <a href="#" class="cta-button">Learn More</a>
-                </div>
-                <div class="product-card">
-                    <img src="/api/placeholder/150/150" alt="Insulated Lunch Box">
-                    <h3>Insulated Lunch Box</h3>
-                    <p>$24.99</p>
-                    <a href="#" class="cta-button">Learn More</a>
-                </div>
-                <div class="product-card">
-                    <img src="/api/placeholder/150/150" alt="Reusable Ice Cubes">
-                    <h3>Reusable Ice Cubes</h3>
-                    <p>$12.99</p>
-                    <a href="#" class="cta-button">Learn More</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
+        
     <div class="eco-points">
         <i class="fas fa-leaf"></i> Eco Points: <span id="eco-points-value">0</span>
     </div>
 
     <footer>
         <div class="container">
-            <p>Together, we've prevented over 1,000,000 single-use plastic bottles from entering landfills!</p>
+            <p>Together, we can prevent over 1,000,000 single-use plastic bottles from entering landfills!</p>
             <p>&copy; 2024 Aavaran. All rights reserved.</p>
         </div>
     </footer>
@@ -711,6 +772,21 @@
 
         window.addEventListener('scroll', animateOnScroll);
         animateOnScroll(); // Run once on load
+
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
