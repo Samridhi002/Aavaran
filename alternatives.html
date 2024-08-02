@@ -1,235 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alternatives | Aavaran</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Eco-Friendly Alternatives | Aavaran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset some default browser styles */
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
         /* Header styles */
         .site-header {
             background-color: #ffffff;
-            padding: 20px 50px;
+            padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo a {
-            font-family: 'Arial', sans-serif;
             color: #00796b;
-            /* Matching the green tone from the image */
             text-decoration: none;
             font-size: 2em;
             font-weight: bold;
         }
-
         .nav-links {
             list-style: none;
             display: flex;
             gap: 30px;
         }
-
-        .nav-links li {
-            display: inline-block;
-        }
-
         .nav-links a {
             color: #00796b;
-            /* Matching the green tone from the image */
             text-decoration: none;
             font-size: 1.1em;
             padding: 10px 20px;
             transition: background 0.3s ease;
         }
-
         .nav-links a:hover,
         .nav-links .active {
             background-color: #e0f2f1;
             border-radius: 20px;
         }
 
+        /* Hero section styles */
         .hero {
             background: linear-gradient(to right, #32CD32, #20B2AA);
             color: white;
-            padding: 50px 20px;
+            padding: 50px 0;
             text-align: center;
         }
-        .hero h2 {
-            margin: 0;
+        .hero h1 {
             font-size: 2.5rem;
+            margin-bottom: 20px;
         }
         .hero p {
-            margin: 20px 0;
             font-size: 1.2rem;
+            margin-bottom: 30px;
         }
-        .hero a.button {
-            padding: 15px 30px;
-            border-radius: 30px;
-            background-color: white;
-            color: #32CD32;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            display: inline-block;
+
+        /* Search section styles */
+        .search-section {
+            background-color: #f9f9f9;
+            padding: 40px 0;
         }
-        .products {
+        .search-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 40px 20px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        #search-input {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #search-button:hover {
+            background-color: #005a4f;
+        }
+
+        /* Filter section styles */
+        .filter-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .filter-dropdown {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Results section styles */
+        .results-section {
+            padding: 40px 0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
         .product-card {
-            background-color: #eaf8f4;
+            background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            width: 300px;
-            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-info {
             padding: 20px;
         }
-        .product-card img {
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .star {
+            color: #ffc107;
+        }
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .action-button {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .compare-button {
+            background-color: #e0f2f1;
+            color: #00796b;
+        }
+        .compare-button:hover {
+            background-color: #b2dfdb;
+        }
+        .favorite-button {
+            background-color: #fff;
+            color: #00796b;
+            border: 1px solid #00796b;
+        }
+        .favorite-button:hover {
+            background-color: #e0f2f1;
+        }
+
+        /* Comparison modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
             width: 100%;
-            border-radius: 10px 10px 0 0;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
         }
-        .product-card h3 {
-            margin: 15px 0;
-            font-size: 1.5rem;
-        }
-        .product-card p {
-            margin: 10px 0;
-            font-size: 1rem;
-            color: #555;
-        }
-        .benefits {
-            background-color: #e5fcf0;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .benefits h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #00473E;
-        }
-        .benefits ul {
-            list-style: none;
-            padding: 0;
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
             max-width: 800px;
-            margin: 0 auto;
+            border-radius: 10px;
         }
-        .benefits ul li {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            padding: 10px;
-        }
-        .call-to-action {
-            background: linear-gradient(to right, #32CD32, #20B2AA);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .call-to-action h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        .call-to-action a.button {
-            padding: 15px 30px;
-            border-radius: 30px;
-            background-color: white;
-            color: #32CD32;
-            text-decoration: none;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .footer-container {
-            background: linear-gradient(to right, #32CD32, #20B2AA);
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        .footer-container h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .footer-container a.button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 30px;
-            border-radius: 30px;
-            background-color: white;
-            color: #32CD32;
+        .close:hover,
+        .close:focus {
+            color: #000;
             text-decoration: none;
-            font-weight: bold;
+            cursor: pointer;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
         }
 
+        /* Footer styles */
         .footer {
             background-color: #00473E;
             color: white;
-            padding: 40px 20px;
+            padding: 40px 0;
+        }
+        .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            align-items: flex-start;
         }
-
-        .footer .column {
+        .footer-column {
             flex: 1;
             min-width: 200px;
-            margin: 20px;
+            margin-bottom: 20px;
         }
-
         .footer h3 {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-
         .footer p,
         .footer a {
-            color: white;
+            color: #B0C4DE;
             font-size: 0.9rem;
             text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
         }
-
-        .footer ul {
-            list-style: none;
-            padding: 0;
+        .footer a:hover {
+            color: white;
         }
-
-        .footer ul li {
-            margin: 10px 0;
+        .social-icons {
+            display: flex;
+            gap: 10px;
         }
-
-        .footer .newsletter input[type="email"] {
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        .newsletter input[type="email"] {
             padding: 10px;
             border: none;
             border-radius: 5px;
             margin-right: 10px;
             width: calc(100% - 120px);
-            max-width: 300px;
+            max-width: 200px;
         }
-
-        .footer .newsletter button {
+        .newsletter button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -237,121 +298,354 @@
             color: white;
             cursor: pointer;
         }
-
-        .footer .social-icons a {
-            margin-right: 10px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer .social-icons i {
-            font-size: 1.2rem;
-        }
-
         .footer .bottom-text {
-            text-align: left;
-            margin-top: 200px;
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #B0C4DE;
             font-size: 0.8rem;
-            color: #B0C4DE;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .search-container {
+                flex-direction: column;
+            }
+            #search-input {
+                width: 100%;
+            }
+            .filter-section {
+                flex-wrap: wrap;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
-
 <body>
     <header class="site-header">
-        <nav class="navbar">
-            <div class="logo">
-                <a href="index.html">Aavaran</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="alternatives.html">Alternatives</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="register.html">My Account</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">Aavaran</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="alternatives.html" class="active">Alternatives</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="register.html">My Account</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
-        <h2>Discover Eco-Friendly Alternatives</h2>
-        <p>Find sustainable substitutes for everyday products and make a positive impact on the planet.</p>
-        <a href="#" class="button">Explore Products</a>
-    </section>
-
-    <section class="products">
-        <div class="product-card">
-            <img src="images/bamboo-toothbrush.jpg" alt="Bamboo Toothbrush">
-            <h3>Bamboo Toothbrush</h3>
-            <p>A biodegradable alternative to plastic toothbrushes.</p>
-        </div>
-        <div class="product-card">
-            <img src="images/steel-water-bottle.jpg" alt="Steel Water Bottle">
-            <h3>Reusable Water Bottle</h3>
-            <p>Durable and stylish alternative to single-use plastics.</p>
-        </div>
-        <div class="product-card">
-            <img src="images/organic-cotton-bag.jpg" alt="Organic Cotton Bag">
-            <h3>Organic Cotton Bag</h3>
-            <p>Versatile and eco-friendly shopping companion.</p>
+        <div class="container">
+            <h1>Discover Eco-Friendly Alternatives</h1>
+            <p>Find sustainable substitutes for everyday products and make a positive impact on the planet.</p>
         </div>
     </section>
 
-    <section class="benefits">
-        <h2>Why Choose Eco-Friendly Products?</h2>
-        <ul>
-            <li>Reduce environmental impact by minimizing waste and pollution.</li>
-            <li>Support sustainable practices and ethical production methods.</li>
-            <li>Save money in the long run by choosing reusable and durable items.</li>
-            <li>Promote a healthier lifestyle with natural and non-toxic materials.</li>
-        </ul>
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Enter a product name...">
+                <button id="search-button">Search Alternatives</button>
+            </div>
+            <div class="filter-section">
+                <select class="filter-dropdown" id="category-filter">
+                    <option value="">All Categories</option>
+                    <option value="bathroom">Bathroom</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="office">Office</option>
+                </select>
+                <select class="filter-dropdown" id="price-filter">
+                    <option value="">All Prices</option>
+                    <option value="low">$0 - $10</option>
+                    <option value="medium">$10 - $25</option>
+                    <option value="high">$25+</option>
+                </select>
+            </div>
+        </div>
     </section>
 
-    
+    <section class="results-section">
+        <div class="container">
+            <div class="results-grid" id="results-grid">
+                <!-- Product cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
 
-
-    <div class="footer-container">
-        <h2>Ready to Make a Difference?</h2>
-        <p>Join our community and start your sustainable journey today.</p>
-        <a href="register.html" class="button">Sign Up Now</a>
+    <div id="comparison-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Product Comparison</h2>
+            <table class="comparison-table" id="comparison-table">
+                <!-- Comparison data will be dynamically inserted here -->
+            </table>
+        </div>
     </div>
 
     <footer class="footer">
-        <div class="column">
-            <h3>Aavaran</h3>
-            <p>Empowering sustainable living through conscious choices.</p>
-        </div>
-        <div class="column">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="column">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.Twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.Instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aavaran</h3>
+                    <p>Empowering sustainable living through conscious choices.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="product.html">Products</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column newsletter">
+                    <h3>Newsletter</h3>
+                    <form>
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom-text">
+                <p>&copy; 2024 Aavaran. All rights reserved.</p>
             </div>
         </div>
-        <div class="column newsletter">
-            <h3>Newsletter</h3>
-            <form>
-                <input type="email" placeholder="Enter your email">
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
+    </footer>
 
-    <div class="bottom-text">
-        <p>© 2024 Aavaran. All rights reserved.</p>
-    </div>
-</footer>
+    <script>
+        // Sample product data (in a real application, this would come from a server)
+        const products = [
+            {
+                id: 1,
+                name: "Bamboo Toothbrush",
+                description: "Biodegradable alternative to plastic toothbrushes",
+                image: "bamboo-toothbrush.jpg",
+                category: "bathroom",
+                price: 5.99,
+                rating: 4.5
+            },
+            {
+                id: 2,
+                name: "Reusable Water Bottle",
+                description: "Durable and stylish alternative to single-use plastics",
+                image: "water-bottle.jpg",
+                category: "kitchen",
+                price: 15.99,
+                rating: 4.8
+            },
+            {
+                id: 3,
+                name: "Organic Cotton Bag",
+                description: "Versatile and eco-friendly shopping companion",
+                image: "cotton-bag.jpg",
+                category: "clothing",
+                price: 12.99,
+                rating: 4.2
+            },
+            {
+                id: 4,
+                name: "Recycled Paper Notebook",
+                description: "Eco-friendly alternative to traditional notebooks",
+                image: "recycled-notebook.jpg",
+                category: "office",
+                price: 8.99,
+                rating: 4.0
+            }
+        ];
+
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const resultsGrid = document.getElementById('results-grid');
+        const categoryFilter = document.getElementById('category-filter');
+        const priceFilter = document.getElementById('price-filter');
+        const comparisonModal = document.getElementById('comparison-modal');
+        const comparisonTable = document.getElementById('comparison-table');
+        const closeModal = document.getElementsByClassName('close')[0];
+
+        let selectedProducts = [];
+
+        // Search and filter functionality
+        function updateResults() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            const priceRange = priceFilter.value;
+
+            const filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
+                                      product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === '' || product.category === category;
+                let matchesPrice = true;
+                if (priceRange === 'low') {
+                    matchesPrice = product.price <= 10;
+                } else if (priceRange === 'medium') {
+                    matchesPrice = product.price > 10 && product.price <= 25;
+                } else if (priceRange === 'high') {
+                    matchesPrice = product.price > 25;
+                }
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+
+            displayResults(filteredProducts);
+        }
+
+        // Display results in the grid
+        function displayResults(products) {
+            resultsGrid.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-rating">
+                            ${getStarRating(product.rating)}
+                            <span>${product.rating.toFixed(1)}</span>
+                        </div>
+                        <p>Price: $${product.price.toFixed(2)}</p>
+                        <div class="product-actions">
+                            <button class="action-button compare-button" data-id="${product.id}">Compare</button>
+                            <button class="action-button favorite-button" data-id="${product.id}">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                resultsGrid.appendChild(productCard);
+            });
+
+            // Add event listeners to the new buttons
+            document.querySelectorAll('.compare-button').forEach(button => {
+                button.addEventListener('click', handleCompare);
+            });
+            document.querySelectorAll('.favorite-button').forEach(button => {
+                button.addEventListener('click', handleFavorite);
+            });
+        }
+
+        // Generate star rating HTML
+        function getStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    starsHtml += '<i class="fas fa-star star"></i>';
+                } else if (i === fullStars && halfStar) {
+                    starsHtml += '<i class="fas fa-star-half-alt star"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star star"></i>';
+                }
+            }
+            return starsHtml;
+        }
+
+        // Handle compare button click
+        function handleCompare(event) {
+            const productId = parseInt(event.target.getAttribute('data-id'));
+            const product = products.find(p => p.id === productId);
+
+            if (selectedProducts.includes(product)) {
+                selectedProducts = selectedProducts.filter(p => p.id !== productId);
+            } else {
+                if (selectedProducts.length < 3) {
+                    selectedProducts.push(product);
+                } else {
+                    alert('You can compare up to 3 products at a time.');
+                    return;
+                }
+            }
+
+            if (selectedProducts.length > 1) {
+                showComparisonModal();
+            }
+        }
+
+        // Show comparison modal
+        function showComparisonModal() {
+            comparisonTable.innerHTML = `
+                <tr>
+                    <th>Product</th>
+                    ${selectedProducts.map(p => `<th>${p.name}</th>`).join('')}
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    ${selectedProducts.map(p => `<td>$${p.price.toFixed(2)}</td>`).join('')}
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    ${selectedProducts.map(p => `<td>${p.category}</td>`).join('')}
+                </tr>
+                <tr>
+                    <td>Rating</td>
+                    ${selectedProducts.map(p => `<td>${p.rating.toFixed(1)}</td>`).join('')}
+                </tr>
+            `;
+            comparisonModal.style.display = 'block';
+        }
+
+        // Handle favorite button click
+        function handleFavorite(event) {
+            const button = event.currentTarget;
+            const icon = button.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                // In a real application, you would save this to the user's favorites
+                alert('Added to favorites!');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                // In a real application, you would remove this from the user's favorites
+                alert('Removed from favorites!');
+            }
+        }
+
+        // Close modal when clicking on X or outside the modal
+        closeModal.onclick = function() {
+            comparisonModal.style.display = 'none';
+            selectedProducts = [];
+        }
+
+        window.onclick = function(event) {
+            if (event.target == comparisonModal) {
+                comparisonModal.style.display = 'none';
+                selectedProducts = [];
+            }
+        }
+
+        // Event listeners
+        searchButton.addEventListener('click', updateResults);
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                updateResults();
+            }
+        });
+        categoryFilter.addEventListener('change', updateResults);
+        priceFilter.addEventListener('change', updateResults);
+
+        // Initial display
+        displayResults(products);
+    </script>
 </body>
-
 </html>
