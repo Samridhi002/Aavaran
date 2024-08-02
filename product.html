@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Aavaran</title>
     <style>
-        /* Reset and base styles */
+        
         * {
             margin: 0;
             padding: 0;
@@ -88,7 +88,7 @@
             border-radius: 20px;
         }
 
-        /* Hamburger menu styles */
+        
         .hamburger {
             display: none;
             cursor: pointer;
@@ -98,7 +98,7 @@
             font-size: 1.5rem;
         }
 
-        /* Hero Section */
+        
         .hero {
             position: relative;
             height: 600px;
@@ -146,7 +146,7 @@
             transform: translateY(-3px);
         }
 
-        /* Dynamic Banner */
+        
         .dynamic-banner {
             background-color: var(--accent-color);
             color: white;
@@ -157,7 +157,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Main content styles */
+        
         main {
             padding: 2rem 0;
         }
@@ -183,7 +183,7 @@
             background-color: var(--accent-color);
         }
 
-        /* Search and Filter */
+        
         .search-filter {
             display: flex;
             justify-content: space-between;
@@ -233,7 +233,7 @@
             transform: translateY(-2px);
         }
 
-        /* Product Cards */
+        
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -324,7 +324,7 @@
             transform: scale(1.05);
         }
 
-        /* Footer styles */
+        
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -342,7 +342,7 @@
             font-style: italic;
         }
 
-        /* Dark mode toggle */
+        
         .dark-mode-toggle {
             background: none;
             border: none;
@@ -356,7 +356,7 @@
             color: var(--secondary-color);
         }
 
-        /* Modal styles */
+        
         .modal {
             display: none;
             position: fixed;
@@ -403,7 +403,7 @@
             color: var(--accent-color);
         }
 
-        /* Pagination styles */
+        
         .pagination {
             display: flex;
             justify-content: center;
@@ -430,7 +430,7 @@
             cursor: not-allowed;
         }
 
-        /* Wishlist button */
+        
         .wishlist-btn {
             background: none;
             border: none;
@@ -444,7 +444,7 @@
             transform: scale(1.1);
         }
 
-        /* Responsive styles */
+        
         @media (max-width: 768px) {
             .header {
                 padding: 20px;
@@ -592,7 +592,7 @@
         </div>
 
         <div class="products" id="products-container">
-            <!-- Product cards will be dynamically added here -->
+            
         </div>
 
         <div class="pagination">
@@ -825,12 +825,12 @@
     searchInput.addEventListener('input', performSearch);
     searchButton.addEventListener('click', performSearch);
 
-    // Dark mode toggle
+    
     darkModeToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
     });
 
-    // Quick view modal
+    
     productsContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('quick-view')) {
             const productId = parseInt(e.target.getAttribute('data-id'));
@@ -866,7 +866,7 @@
         }
     });
 
-    // Dynamic banner
+    
     const bannerMessages = [
         "New Arrivals: Check out our latest sustainable products!",
         "Free shipping on orders over ₹1000!",
@@ -883,12 +883,12 @@
 
     setInterval(rotateBanner, 5000);
 
-    // Mobile menu toggle
+    
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('show');
     });
 
-    // Pagination
+    
     prevPageBtn.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
@@ -904,10 +904,10 @@
         }
     });
 
-    // Initial display
+    
     document.addEventListener('DOMContentLoaded', () => {
-        displayProducts(1); // This will display the first page of products when the page loads
-        filterProducts(); // This will apply any default filters
+        displayProducts(1); 
+        filterProducts(); 
     });
 </script>
 </body>

@@ -357,29 +357,29 @@
 
         signinForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add sign-in logic here
+            
             console.log('Sign in submitted');
             showNotification('Sign in successful!');
         });
 
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add registration logic here
+            
             console.log('Registration submitted');
             showNotification('Registration successful!');
         });
 
-        // Social sign-in buttons
+        
         document.querySelectorAll('.social-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const platform = e.currentTarget.classList[1];
                 console.log(`${platform} sign-in clicked`);
                 showNotification(`${platform.charAt(0).toUpperCase() + platform.slice(1)} sign-in successful!`);
-                // Add social sign-in logic here
+                
             });
         });
 
-        // Hamburger menu functionality
+        
         hamburger.addEventListener('click', () => {
             navbarLinks.classList.toggle('active');
         });
