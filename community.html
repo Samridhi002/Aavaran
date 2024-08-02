@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aavaran Community</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #ddd;
+            --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--light-text);
+            color: var(--text-color);
+            padding: 0 1em;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 3rem;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            padding: 20px;
+        }
+
+
+
+        .section {
+            background-color: var(--light-text);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        #eco-tip {
+            background-color: #e7f3e8;
+            border-left: 4px solid var(--primary-color);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .sustainability-challenge {
+            background-color: #f0f8ff;
+            border: 1px solid #b0e0e6;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .challenge-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #challenge-idea {
+            font-style: italic;
+        }
+
+        .resources-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .resources-list li {
+            margin-bottom: 10px;
+        }
+
+        .resources-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .resources-list a:hover {
+            color: var(--secondary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            margin: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--light-text);
+            font-size: 1.5em;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        .newsletter input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .newsletter button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--light-text);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--light-text);
+                box-shadow: var(--box-shadow);
+                flex-direction: column;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 20px;
+            }
+
+            main {
+                margin-top: 80px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Aavaran</div>
+        <nav>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <ul id="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Alternatives</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">My Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="eco-tip" class="section">
+            <h2>Eco Tip of the Day</h2>
+            <p id="tip-content"></p>
+        </section>
+
+        <section id="sustainability-challenge" class="section">
+            <h2>Weekly Sustainability Challenge</h2>
+            <div class="sustainability-challenge">
+                <div class="challenge-title">This Week's Challenge:</div>
+                <p id="challenge-idea"></p>
+                <button id="new-challenge">Get New Challenge</button>
+            </div>
+        </section>
+
+        <section id="community-spotlight" class="section">
+            <h2>Community Spotlight</h2>
+            <p>Share your sustainable living journey with us! Use #AavaranCommunity on social media to showcase your eco-friendly practices and inspire others.</p>
+            <p>Stay tuned for featured community stories and sustainable living tips from our growing network of conscious consumers.</p>
+        </section>
+
+        <section id="resources" class="section">
+            <h2>Sustainability Resources</h2>
+            <ul class="resources-list">
+                <li><a href="https://www.epa.gov/recycle/composting-home" target="_blank">Guide to Composting at Home (EPA)</a></li>
+                <li><a href="https://www.goodhousekeeping.com/home/cleaning/tips/a24885/make-at-home-cleaners/" target="_blank">DIY Natural Cleaning Products (Good Housekeeping)</a></li>
+                <li><a href="https://www.goingzerowaste.com/blog/the-ultimate-step-by-step-guide-to-going-zero-waste" target="_blank">How to Start a Zero-Waste Lifestyle (Going Zero Waste)</a></li>
+                <li><a href="https://www.nature.org/en-us/get-involved/how-to-help/carbon-footprint-calculator/" target="_blank">Understanding Carbon Footprint (The Nature Conservancy)</a></li>
+                <li><a href="https://www.thegoodtrade.com/features/sustainable-fashion-101" target="_blank">Sustainable Fashion: A Beginner's Guide (The Good Trade)</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Aavaran</h3>
+                <p>Empowering sustainable living through conscious choices.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section newsletter">
+                <h3>Newsletter</h3>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Aavaran. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tipContent = document.getElementById('tip-content');
+            const challengeIdea = document.getElementById('challenge-idea');
+            const newChallengeButton = document.getElementById('new-challenge');
+
+            const ecoTips = [
+                "Try using a reusable water bottle instead of buying plastic bottles.",
+                "Opt for cloth bags when shopping to reduce plastic waste.",
+                "Use energy-efficient LED bulbs to save electricity.",
+                "Start composting kitchen scraps to reduce waste and create nutrient-rich soil.",
+                "Choose products with minimal packaging to reduce waste.",
+                "Unplug electronics when not in use to save energy.",
+                "Use a bike or public transportation instead of driving when possible.",
+                "Support local farmers by shopping at farmers markets.",
+                "Reduce meat consumption to lower your carbon footprint.",
+                "Use natural light when possible to reduce electricity usage."
+            ];
+
+            const sustainabilityChallenges = [
+                "Go plastic-free for a week. Avoid using any single-use plastics.",
+                "Reduce your shower time by 2 minutes each day for a week.",
+                "Eat only plant-based meals for three days this week.",
+                "Find three items in your home to repurpose instead of throwing away.",
+                "Use only reusable containers for your meals and snacks this week.",
+                "Walk, bike, or use public transport for all trips under 2 miles this week.",
+                "Conduct a home energy audit and implement three energy-saving measures.",
+                "Start a small herb garden in your kitchen or balcony.",
+                "Organize a neighborhood clean-up day.",
+                "Try making your own natural cleaning products this week."
+            ];
+
+            function displayRandomTip() {
+                const randomIndex = Math.floor(Math.random() * ecoTips.length);
+                tipContent.textContent = ecoTips[randomIndex];
+            }
+
+            function displayRandomChallenge() {
+                const randomIndex = Math.floor(Math.random() * sustainabilityChallenges.length);
+                challengeIdea.textContent = sustainabilityChallenges[randomIndex];
+            }
+
+            displayRandomTip();
+            displayRandomChallenge();
+
+            newChallengeButton.addEventListener('click', displayRandomChallenge);
+
+            // Change eco tip daily
+            setInterval(displayRandomTip, 24 * 60 * 60 * 1000);
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
