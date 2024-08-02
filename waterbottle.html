@@ -523,13 +523,13 @@
             <div id="reviews" class="tab-content">
                 <h2>Customer Reviews</h2>
                 <div id="reviews-container">
-                    <!-- Reviews will be dynamically loaded here -->
+                    
                 </div>
             </div>
             <div id="qa" class="tab-content">
                 <h2>Questions & Answers</h2>
                 <div id="qa-container">
-                    <!-- Q&A will be dynamically loaded here -->
+                    
                 </div>
                 <div class="question-form">
                     <h3>Ask a Question</h3>
@@ -560,7 +560,7 @@
             <div class="quiz-container">
                 <h3>Test Your Knowledge</h3>
                 <div id="quiz">
-                    <!-- Quiz will be dynamically loaded here -->
+                    
                 </div>
             </div>
         </section>
@@ -600,7 +600,7 @@
     </footer>
 
     <script>
-        // Tab functionality
+        
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
 
@@ -616,7 +616,7 @@
             });
         });
 
-        // Dynamic loading of reviews
+        
         const reviewsContainer = document.getElementById('reviews-container');
         const reviews = [
             { name: 'Emily S.', rating: 5, comment: 'Love this water bottle! Keeps my water cold all day.' },
@@ -639,7 +639,7 @@
 
         loadReviews();
 
-        // Handling the question form submission
+        
         const questionForm = document.getElementById('question-form');
         const qaContainer = document.getElementById('qa-container');
 
@@ -659,7 +659,7 @@
             }
         });
 
-        // Gamification elements
+        
         let ecoPoints = 0;
         const ecoPointsValue = document.getElementById('eco-points-value');
 
@@ -667,17 +667,17 @@
             ecoPoints += points;
             ecoPointsValue.textContent = ecoPoints;
             ecoPointsValue.style.animation = 'none';
-            ecoPointsValue.offsetHeight; // Trigger reflow
+            ecoPointsValue.offsetHeight; 
             ecoPointsValue.style.animation = 'fadeInUp 0.5s ease';
         }
 
-        // Add eco points for various actions
+        
         document.querySelector('.cta-button').addEventListener('click', () => incrementEcoPoints(10));
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', () => incrementEcoPoints(1));
         });
 
-        // Creating quizzes or surveys
+        
         const quizContainer = document.getElementById('quiz');
         const quizQuestions = [
             {
@@ -708,22 +708,22 @@
                 quizContainer.appendChild(questionElement);
             });
 
-            // Add event listeners to quiz options
+            
             document.querySelectorAll('.quiz-option').forEach(option => {
                 option.addEventListener('click', (e) => {
                     const selectedOption = e.target;
                     const questionIndex = Array.from(quizContainer.children).indexOf(selectedOption.closest('.quiz-question'));
                     const optionIndex = parseInt(selectedOption.getAttribute('data-index'));
 
-                    // Remove previous selections
+                    
                     selectedOption.closest('.quiz-options').querySelectorAll('.quiz-option').forEach(opt => {
                         opt.classList.remove('selected');
                     });
 
-                    // Select the clicked option
+                    
                     selectedOption.classList.add('selected');
 
-                    // Check if the answer is correct
+                    
                     if (optionIndex === quizQuestions[questionIndex].correctAnswer) {
                         incrementEcoPoints(5);
                         selectedOption.style.backgroundColor = '#2ecc71';
@@ -736,7 +736,7 @@
 
         loadQuiz();
 
-        // Sticky header
+        
         const header = document.querySelector('header');
         let lastScrollTop = 0;
 
@@ -750,7 +750,7 @@
             lastScrollTop = scrollTop;
         });
 
-        // Animate elements on scroll
+        
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
             return (
@@ -771,9 +771,9 @@
         }
 
         window.addEventListener('scroll', animateOnScroll);
-        animateOnScroll(); // Run once on load
+        animateOnScroll();
 
-        // Hamburger menu functionality
+        
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -781,7 +781,7 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking outside
+        
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
                 navLinks.classList.remove('active');

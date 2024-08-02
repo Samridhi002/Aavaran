@@ -527,13 +527,13 @@
             <div id="reviews" class="tab-content">
                 <h2>Customer Reviews</h2>
                 <div id="reviews-container">
-                    <!-- Reviews will be dynamically loaded here -->
+                    
                 </div>
             </div>
             <div id="qa" class="tab-content">
                 <h2>Questions & Answers</h2>
                 <div id="qa-container">
-                    <!-- Q&A will be dynamically loaded here -->
+                    
                 </div>
                 <div class="question-form">
                     <h3>Ask a Question</h3>
@@ -563,7 +563,7 @@
             <div class="quiz-container">
                 <h3>Test Your Knowledge</h3>
                 <div id="quiz">
-                    <!-- Quiz will be dynamically loaded here -->
+                    
                 </div>
             </div>
         </section>
@@ -617,7 +617,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Tab functionality
+            
             $('.tab-button').click(function() {
                 $('.tab-button').removeClass('active');
                 $('.tab-content').removeClass('active');
@@ -625,7 +625,7 @@
                 $('#' + $(this).data('tab')).addClass('active');
             });
 
-            // Eco points functionality
+            
             let ecoPoints = 0;
             function incrementEcoPoints(points) {
                 ecoPoints += points;
@@ -637,7 +637,7 @@
                 incrementEcoPoints(10);
             });
 
-            // Load reviews
+            
             const reviewsContainer = $('#reviews-container');
             const reviews = [
                 { name: 'John D.', rating: 5, comment: 'Great product! Feels good to use and helps the environment.' },
@@ -659,7 +659,7 @@
 
             loadReviews();
 
-            // Quiz functionality
+            
             const quizContainer = $('#quiz');
             const quizQuestions = [
                 {
@@ -699,7 +699,7 @@
                     quizContainer.append(questionElement);
                 });
 
-                // Quiz interaction
+                
                 $('.quiz-option').click(function() {
                     const $this = $(this);
                     $this.siblings().removeClass('selected');
@@ -718,19 +718,19 @@
 
             loadQuiz();
 
-            // Question form submission
+            
             $('#question-form').submit(function(e) {
                 e.preventDefault();
                 alert('Thank you for your question! We will respond shortly.');
                 $(this).find('textarea').val('');
             });
 
-            // Hamburger menu functionality
+            
             $('.hamburger').click(function() {
                 $('.nav-links').toggleClass('active');
             });
 
-            // Close menu when clicking outside
+            
             $(document).click(function(event) {
                 if (!$(event.target).closest('.nav-links, .hamburger').length) {
                     $('.nav-links').removeClass('active');
